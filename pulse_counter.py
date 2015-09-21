@@ -40,26 +40,6 @@ def writedata(filename, data, debug=False):
     if debug: print "  Closing"
     # sys.stdout.flush()
 
-def readPin(pin):
-    try:
-        pin = str(pin)
-        #      GPIO.setup(int(pin), GPIO.IN)
-        if GPIO.input(int(pin)) == True:
-            response = "Pin number " + pin + " is high!"
-        else:
-            response = "Pin number " + pin + " is low!"
-    except as err:
-        print("Error:", err)
-        print("Number:", err.errno)
-        response = "There was an error reading pin " + pin + "."
-    templateData = { 'title' : 'Status of Pin' + pin, 'response' : response }
-    return templateData
-
-################################################
-if __name__ == '__main__':
-        print readPin(25)
-
-
 if __name__ == '__main__':
     print "Starting counter"
     start_time = time()

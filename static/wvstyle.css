@@ -1,6 +1,9 @@
-body {background-color:lightgray}
+body {background-color:lightgray;
+      font-family: Verdana;
+}
+
 h1   {color:SaddleBrown}
-p    {color:green}
+p    {color: DarkSlateBlue}
 
 
 #header {
@@ -12,15 +15,32 @@ p    {color:green}
     margin-bottom: 5px;
 }
 #nav {
+    color: DarkSlateBlue;
+    list-style-type:none;
     border-radius: 5px 10px;
     line-height:30px;
     background-color:#eeeeee;
-    height:600px;
-    width:100px;
+    height:500px;
+    width:160px;
     float:left;
     padding:5px; 
     margin-top: 5px;
     margin-bottom: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+ul#nav li a {
+    text-decoration: none;
+    background-color:SaddleBrown;
+    color: white;
+    padding: 10px 20px;
+}
+table#nav tr td a {
+    width: 100%; 
+    text-decoration: none;
+    background-color:SaddleBrown;
+    color: white;
+    padding: 10px 20px;
 }
 #section {
     width:350px;
