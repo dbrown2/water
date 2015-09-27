@@ -34,7 +34,7 @@ app = Flask(__name__)
 # use decorators to link the function to a url
 @app.route('/')
 def home():
-    return "Hello, World!"  # return a string
+    return redirect(url_for('index_page'))
 
 @app.route('/about')
 def about():
@@ -64,6 +64,7 @@ def login():
 @app.route('/JSON/water_use/rate') 
 def water_use_rate_JSON():
     dts, counts = read_data(path + 'counts.log', debug=False)
+    app.logger.info("Generated JSON water use rate")
     return jsonify({'time':list(dts),
                     'rate_Gal_per_min': list(counts * GAL)})
 
@@ -122,9 +123,10 @@ def water_use_cumulative():
     canvas.print_png(output)
     response = make_response(output.getvalue())
     response.mimetype = 'image/png'
+    app.logger.info("Generated Cumulative Plots")
     return response
 
-@app.route('/water_use/total')
+@app.route('/JSON/water_use/total')
 def water_use_total():
     dts, counts = read_data(path + 'counts.log', debug=False)
     response = jsonify({"total_gallons": int((counts * GAL).sum())})

@@ -4,7 +4,26 @@ body {background-color:lightgray;
 
 h1   {color:SaddleBrown}
 p    {color: DarkSlateBlue}
+span.json {font-family: monospace, monospace; 
+        font-size: 2em;
+        text-align: right;
+        width: 60px;
+}
+a.nav:link, a.nav:visited {
+    display: block;
+    font-weight: bold;
+    color: white;
+    background-color: SaddleBrown
+    width: 60px;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
 
+a.nav:hover, a.nav:active {
+    background-color: lightgray;
+}
 
 #header {
     border-radius: 5px 10px;
@@ -20,8 +39,7 @@ p    {color: DarkSlateBlue}
     border-radius: 5px 10px;
     line-height:30px;
     background-color:#eeeeee;
-    height:500px;
-    width:160px;
+    height:700px;
     float:left;
     padding:5px; 
     margin-top: 5px;
@@ -30,13 +48,13 @@ p    {color: DarkSlateBlue}
     text-transform: uppercase;
 }
 ul#nav li a {
+    display: block;
     text-decoration: none;
     background-color:SaddleBrown;
     color: white;
     padding: 10px 20px;
 }
-table#nav tr td a {
-    width: 100%; 
+table#nav tr td a { 
     text-decoration: none;
     background-color:SaddleBrown;
     color: white;
@@ -58,5 +76,25 @@ table#nav tr td a {
 #plot {
     border-radius: 5px 10px;
 }
+/* from https://www.atlassian.com/git/tutorials/setting-up-a-repository  page */
+code, kbd, pre, samp {
+    font-family: monospace, monospace;
+    font-size: 1em
+}
 
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0
+}
+
+button {
+    overflow: visible;
+    font-size: 2em
+}
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer
+}
 
