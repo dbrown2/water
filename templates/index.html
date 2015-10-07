@@ -5,60 +5,35 @@
   <title>Wooded View Web</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="static/wvstyle.css">
-  <link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico">
-  <script type="text/javascript">
-    var waterTotal = 100;
-    var response = "";
-    function setPageWaterTotal(value) {
-        document.getElementById('waterTotalField').innerHTML = value;
-    }
-    function getWaterTotal() {
-        document.getElementById('waterTotalField').innerHTML = "----";
-        var url = "http://10.0.0.33/JSON/water_use/total";
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                response = JSON.parse(xmlhttp.responseText);
-                setPageWaterTotal(response.total_gallons);
-            }
-        }
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
-    }
-  
-  </script>
 </head>
 
-<body onload="document.getElementById('date').innerHTML = Date()">
+<body>
 <div id="header">
 <h1>Wooded View Web<h1>
 </div>
 
 <div id="nav">
-    <div>
-        <table id="nav" style="height: 220px">
-            <tr><th><p style="text-align:center">Links</p></th></tr>
-            <tr><td><a class="nav" href="/about">About</a></td></tr>
-            <tr><td><a class="nav" href="/welcome">Welcome</a></td></tr>
-            <tr><td><a class="nav" href="/JSON/water_use/total">JSON Demo</a></td></tr>
-         </table>
-     </div>
+    <ul id="nav">
+        <p>Links</p>
+        <li><a href="/About/">About </a></li>
+        <li><a href="/Water/">Water</a></li>
+        <li><a href="/JSON/">JSON Demo</a></li>
+    </ul>
 </div>
 
 <div id="section">
-    <p>Features</p>
-    <a href="/water_use/rate">Water Use Rate</a> <br>
-    <a href="/water_use/cumulative">Water Use Cumulative</a> <br>
-    <br>
 
-    <img id="plot" src="/water_use/cumulative" alt="Cumulative Water Use" width="640" height="480"><br>
 
-    <div id="section2">
-        <p id="js_section">Javascript Functions</p>
-        <p id="date"></br></p>
-        <input type="button" value="Update Total Water Use" onclick="getWaterTotal()" />
-        <p><span class="json" id="waterTotalField" style="border:1px solid SaddleBrown">---</br></span></p>
-    </div>
+<p>Features</p>
+
+<a href="/water_use/rate">Water Use Rate</a> <br>
+
+<a href="/water_use/cumulative">Water Use Cumulative</a> <br>
+
+<br>
+
+<img id="plot" src="/water_use/cumulative" alt="Cumulative Water Use" width="600" height="400"><br>
+
 </div>
 
 </body>
