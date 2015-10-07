@@ -105,14 +105,13 @@ def water_use_cumulative():
     ax = fig.add_subplot(1, 1, 1)
     cumulative = (counts*GAL).cumsum()
     ax.step(dts, cumulative)
-    locator = dates.HourLocator(interval=6)
+    locator = dates.HourLocator(interval=12)
     ax.xaxis.set_major_locator(locator)
     fmt = dates.DateFormatter("%b%e %R")
     ax.xaxis.set_major_formatter(fmt)
     ax.set_xlabel('Time')
     ax.set_ylabel('Cumulative Usage [Gal]')
     ax.set_title('Water Usage, Cumulative')
-    ax.grid('on')
     ax.grid('on')
     fig.autofmt_xdate()
     total = (counts * GAL).sum()
@@ -121,9 +120,10 @@ def water_use_cumulative():
     # output = BytesIO()
     output = StringIO()  # python 2.7x
     canvas.print_png(output)
-    response = make_response(output.getvalue())
+    pic = output.getvalue() # 640px x 480px
+    response = make_response(pic)
     response.mimetype = 'image/png'
-    app.logger.info("Generated Cumulative Plots")
+    # app.logger.info("Generated Cumulative Plot")
     return response
 
 @app.route('/JSON/water_use/total')
