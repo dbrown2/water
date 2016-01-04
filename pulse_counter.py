@@ -13,21 +13,21 @@ CUFT = 1.0/10 # cubic feet per count
 GAL = 7.48052 # gallons per cu ft
 LITER = 28.3168 # liters per cu ft
 # other constants
-channel = 21
-counts = 0
+channel = 40 # BCM 21 - meter uses board pins 39 GND and 40 (pull-up on 40) 
+counts = 0 # counts per interval
 INTERVAL = 60 # sample window in sec
 #path = 'water/'
 filename = 'counts.log'
 def now(): return datetime.ctime(datetime.now())
 header = "Water Meter Usage Log (timestamp counts/min), %s\n" % now()
 
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD) # BCM)
 GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-def count(ch, debug=False):
+def count(ch, debug=True): #False):
     global counts
     counts += 1
-    if debug: print 'counted', counts
+    if debug: print 'Ch %d: counts %d' % (ch, counts)
 
 def writedata(filename, data, debug=False):
     if debug: print " Writing to ",filename," data: ", data
@@ -44,7 +44,8 @@ if __name__ == '__main__':
     print "Starting counter"
     start_time = time()
     try:
-        GPIO.add_event_detect(channel, GPIO.FALLING, callback=count, bouncetime=50)
+        GPIO.add_event_detect(channel, GPIO.FALLING, callback=count, \
+	bouncetime=50)
         if DEBUG:
             print "Counts:"
             print "------"

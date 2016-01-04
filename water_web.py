@@ -15,7 +15,7 @@ CUFT = 1.0/10 # cubic feet per count
 GAL = 7.48052*CUFT # gallons per count
 LITER = 28.3168*CUFT # liters per count
 
-path = '/home/pi/python/water/'
+path = '/home/pi/water/'
 # matplotlib date format object
 hfmt = dates.DateFormatter('%m/%d %H:%M')
 
@@ -63,7 +63,7 @@ def login():
 
 @app.route('/JSON/water_use/rate') 
 def water_use_rate_JSON():
-    dts, counts = read_data(path + 'counts.log', debug=False)
+    dts, counts = read_data(path + 'counts.log', debug=True)
     app.logger.info("Generated JSON water use rate")
     return jsonify({'time':list(dts),
                     'rate_Gal_per_min': list(counts * GAL)})
@@ -71,7 +71,7 @@ def water_use_rate_JSON():
 
 @app.route('/water_use/rate')
 def water_use_rate():
-    dts, counts = read_data(path + 'counts.log', debug=False)
+    dts, counts = read_data(path + 'counts.log', debug=True)
     fig = Figure()
     ax = fig.add_subplot(1, 1, 1)
     ax.step(dts, counts * GAL)
