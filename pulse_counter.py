@@ -16,7 +16,7 @@ LITER = 28.3168 # liters per cu ft
 channel = 40 # BCM 21 - meter uses board pins 39 GND and 40 (pull-up on 40) 
 counts = 0 # counts per interval
 INTERVAL = 60 # sample window in sec
-#path = 'water/'
+path = '/home/pi/water'
 filename = 'counts.log'
 def now(): return datetime.ctime(datetime.now())
 header = "Water Meter Usage Log (timestamp counts/min), %s\n" % now()
@@ -28,14 +28,14 @@ def count(ch, debug=True): #False):
     global counts
     counts += 1
     if debug: print 'Ch %d: counts %d' % (ch, counts)
-
-def writedata(filename, data, debug=False):
+file_path = os.path.join(path, filename)
+def writedata(file_path, data, debug=False):
     if debug: print " Writing to ",filename," data: ", data
-    if not os.path.isfile(filename):
+    if not os.path.isfile(file_path):
         # create a new file if it is not found
         print "Creating new file %s, at %s" %(filename, now())
-        with open(filename, "w") as f: f.write(header)
-    with open(filename, "a") as f:
+        with open(file_path, "w") as f: f.write(header)
+    with open(file_path, "a") as f:
         f.write("%s\n" % data)
     if debug: print "  Closing"
     # sys.stdout.flush()

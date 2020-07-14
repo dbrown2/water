@@ -1,5 +1,6 @@
-#!/usr/bin/env python
+#!/home/pi/miniconda/bin/python
 # import the Flask class from the flask module
+import logging
 from flask import Flask, render_template, redirect, url_for, request
 from flask import make_response, jsonify
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
@@ -30,6 +31,11 @@ def read_data(filename, debug=False):
 
 # create the application object
 app = Flask(__name__)
+app.debug = False
+#if not app.debug:
+#    file_handler = logging.FileHandler('water_log.log')
+#    file_handler.setLevel(logging.DEBUG)
+#    app.logger.addHandler(file_handler)
 
 # use decorators to link the function to a url
 @app.route('/')
@@ -136,4 +142,4 @@ def water_use_total():
 ###########################################################
 # start the server with the 'run()' method
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=80, debug=True)
